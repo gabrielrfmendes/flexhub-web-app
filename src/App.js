@@ -1,24 +1,28 @@
 import './App.css';
+import SignIn from './views/SignIn';
+import AuthenticationContext from './contexts/AuthenticationContext';
 import { Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import View from './components/View';
-import View1 from './views/View1';
-import View2 from './views/View2';
-import View3 from './views/View3';
+import { useState, useEffect } from 'react';
+
+
 
 function App() {
+    const [authenticated, setAuthenticated] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            setAuthenticated(true);
+        }
+    }, []);
+
     return (
         <div className='App'>
-            <Sidebar />
-            <View>
-                <Header />
+            <AuthenticationContext.Provider value={{ authenticated }}>
                 <Routes>
-                    <Route path='/view-1' element={<View1 />} />
-                    <Route path='/view-2' element={<View2 />} />
-                    <Route path='/view-3' element={<View3 />} />
+                    <Route path='/signin' element={<SignIn />} />
                 </Routes>
-            </View>
+            </AuthenticationContext.Provider>
         </div>
     )
 }
