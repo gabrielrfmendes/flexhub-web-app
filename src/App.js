@@ -1,5 +1,5 @@
 import './App.css';
-import SignIn from './views/SignIn';
+import View1 from './views/View1';
 import AuthenticationContext from './contexts/AuthenticationContext';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -20,7 +20,7 @@ function App() {
         <div className='App'>
             <AuthenticationContext.Provider value={{ authenticated }}>
                 <Routes>
-                    <Route path='/signin' element={<SignIn />} />
+                    <Route path='/' element={<View1 />} />
                 </Routes>
             </AuthenticationContext.Provider>
         </div>
